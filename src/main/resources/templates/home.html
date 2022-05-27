@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+</head>
+<body>
+<h1>E-HOTEL</h1>
+<a href="/available">Available</a>
+<a href="/reserved">Reserved</a>
+<a href="/">All</a>
+<div th:each="room : ${rooms}">
+    <span th:text="${room.id}">id</span>
+    <span>number of rooms: </span>
+    <span th:text="${room.noOfBeds}">id</span>
+    <span>available: </span>
+    <span th:text="${room.available}">id</span>
+</div>
+</body>
+</html>
