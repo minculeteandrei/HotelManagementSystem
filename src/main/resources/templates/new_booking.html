@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <title>Create Booking</title>
+</head>
+<body>
+  <div class="container">
+    <h1>E-HOTEL</h1>
+    <h3 class="text-muted">Make a reservation</h3>
+    <form method="post" th:object="${booking}" th:action="@{/booking/create}">
+      <label for="rooms">Enter available rooms</label><br>
+      <select class="form-select form-select-sm" id="rooms" th:field="*{rooms}">
+        <option th:each="room : ${rooms}" th:value="${room}" th:text="${room.id}"></option>
+      </select>
+      <label for="services">Select services</label><br>
+      <select class="form-select form-select-sm" multiple id="services" th:field="*{services}">
+        <option th:each="service : ${T(com.example.ehotel.domain.Services).values()}" th:value="${service}" th:text="${service}"></option>
+      </select>
+      <input type="submit">
+    </form>
+    <table class="table table-bordered table-hover mt-4">
+      <thead class="table-dark">
+      <tr>
+        <th scope="col">room number</th>
+        <th scope="col">number of beds</th>
+        <th scope="col">available</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="room : ${rooms}">
+        <th scope="row" th:text="${room.id}">id</th>
+        <td th:text="${room.noOfBeds}">id</td>
+        <td th:text="${room.available}">id</td>
+      </tr>
+    </table>
+  </div>
+
+</body>
+</html>
